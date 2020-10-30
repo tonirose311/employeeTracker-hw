@@ -15,15 +15,16 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
   if (err) throw err;
-  start();
+  startApp();
   console.log("connected as id " + connection.threadId);
 });
 
-function start(){
+// prompt user to choose an option
+function startApp(){
     inquirer
     .prompt({
         type: "list",
-        name: "name",
+        name: "options",
         message: "What would you like to do?",
         choices: [
             "Add Department",
@@ -33,7 +34,35 @@ function start(){
             "View Employees",
             "View Roles",
             "Update Employee Roles",
-            "View Total Utilized Budget for Department"
+            "View Total Utilized Budget for Department",
+            "Exit"
         ]
+    }).then((answer) => {
+        switch (answer.options){
+            case 'Add Department':
+                addDepartment();
+                break;
+             case 'Add Employee':
+                addEmployee();
+                break;
+             case 'Add Role':
+                addRole();
+                break;
+                case 'View Departments':
+                showDepartments();
+                break;
+             case 'View Employees':
+                showEmployees();
+                break;
+             case 'View Roles':
+                showRoles();
+                break;
+            case 'Update Employee Roles':
+                updateRole();
+                break;
+            case 'Exit':
+                connection.end();
+                break;
+        }
     })
 };
