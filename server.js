@@ -1,5 +1,5 @@
-var inquirer = require ("inquirer")
-var connection = ("./connection")
+var inquirer = require ("inquirer");
+var connection = require ("./connection");
 
 function start(){
     inquirer
@@ -18,4 +18,4 @@ function start(){
             "View Total Utilized Budget for Department"
         ]
     })
-}
+};
