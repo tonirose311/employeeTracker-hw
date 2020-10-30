@@ -1,21 +1,20 @@
 -- Drops database nameDB if it already exists -- 
-DROP DATABASE IF EXISTS nameDB; 
+DROP DATABASE IF EXISTS employeesDB; 
 
 -- Creates database and specified it for use --  
-CREATE DATABASE nameDB;
+CREATE DATABASE employeesDB;
 
-USE nameDB; 
+USE employeesDB; 
 
 -- Creates the table name
 
- CREATE TABLE departments (
-  id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id)
+ CREATE TABLE department (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
 );
 
  CREATE TABLE role (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INT PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   salary DECIMAL NOT NULL,
   department_id INT NOT NULL
@@ -28,3 +27,7 @@ USE nameDB;
   role_id INT NOT NULL,
   manager_id INT
 );
+
+SELECT * FROM department;
+SELECT * FROM role;
+SELECT * FROM employee;
