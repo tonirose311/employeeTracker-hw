@@ -1,33 +1,31 @@
--- Drops database nameDB if it already exists -- 
-DROP DATABASE IF EXISTS employeesDB; 
-
--- Creates database and specified it for use --  
+ DROP DATABASE IF EXISTS employeesDB; 
+ 
 CREATE DATABASE employeesDB;
 
 USE employeesDB; 
 
--- Creates the table name
-
- CREATE TABLE department (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
+CREATE TABLE department (
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
 );
 
- CREATE TABLE role (
-  id INT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  salary DECIMAL NOT NULL,
-  department_id INT NOT NULL
+CREATE TABLE role (
+    id INT AUTO_INCREMENT NOT NULL,
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL NOT NULL,
+    department_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (department_id) REFERENCES  department(id)
 );
 
- CREATE TABLE employee (
-  id INT PRIMARY KEY,
-  first_name VARCHAR(30) NOT NULL,
-  last_name VARCHAR(30) NOT NULL,
-  role_id INT NOT NULL,
-  manager_id INT
+CREATE TABLE employee (
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INT NOT NULL,
+    manager_id INT REFERENCES employee(id),
+    PRIMARY KEY (id),
+    FOREIGN KEY (role_id) REFERENCES role(id),
+    FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
-
-SELECT * FROM department;
-SELECT * FROM role;
-SELECT * FROM employee;
